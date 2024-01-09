@@ -1,71 +1,432 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>My Drive - Google Drive</title>
-<meta charset="UTF-8" />
-<script type="text/javascript" src="eagswebrtc.js"></script>
-<!--script type="text/javascript" src="music.js"></script-->
-<script type="text/javascript" src="classes.js"></script>
-<script type="text/javascript">
-if(document.location.href.startsWith("file:")) {
-alert("You're not supposed to 'open' this file in your browser. Please upload this folder to your HTTP(s) server and access it via the internet. This is not a bug, please read the documentation");
-}else {
-window.addEventListener("load", async function(){
-/*
-let wardUrl = "";
-try {
-  wardUrl = (await (await fetch("https://pipedapi.tokhmi.xyz/streams/5VuDwU4bW8Q")).json()).audioStreams[0].url;
-} catch (e) {}
-*/
-const relayId = Math.floor(Math.random() * 3);
-window.eaglercraftOpts = {
-container: "game_frame", assetsURI: "assets.epk", serverWorkerURI: "worker_bootstrap.js", worldsFolder: "TEST",
-assetOverrides: {
-    // "title/no-pano-blur.flag": "",
-	"records/wait.mp3": "overrides/wait.mp3",
-	//"records/mellohi.mp3": "https://stream.nightride.fm/chillsynth.m4a",
-    "records/mellohi.mp3": "overrides/monkey.mp4",
-	"records/far.mp3": "https://stream.nightride.fm/nightride.m4a",
-	"records/cat.mp3": "http://usa9.fastcast4u.com/proxy/jamz?mp=/1",
-	"records/ward.mp3": "http://fr4.1mix.co.uk:8000/192h",
-	//"records/strad.mp3": "http://listen.011fm.com:8028/stream15",
-    "records/strad.mp3": "overrides/takeonme.mp4",
-    //"records/blocks.mp3": "https://www.ophanim.net:8444/s/9780",
-	"records/blocks.mp3": "overrides/jazzy.mp4",
-	//"records/13.mp3": "https://s2.radio.co/s2b2b68744/listen",
-    "records/13.mp3": "overrides/greenjam.mp4",
-    "records/11.mp3": "overrides/rick.mp4",
-    "records/chirp.mp3": "overrides/undertale.mp4",
-    "records/mall.mp3": "https://www.ophanim.net:8444/s/9780",
-    "title/win.txt": "overrides/win.txt"
-	// "sounds/gta.mp3": "https://invidious.zapashcanon.fr/latest_version?itag=251&id=YRlIl6K6S88"
-	// "records/ward.mp3": wardUrl
-	// "sounds/gta.mp3": ""
-},
-servers: [
-    { serverName: "§n§9Pixel§3Mine§r §l§pServer", serverAddress: "minecraftserver.loca.lt/server", hideAddress: true},
+<html lang="en">
+  <head>
+    <title>PyMC</title>
+    <meta property="og:title" content="PyMC" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
 
-],
-relays: [
-	{ addr: "wss://relay.deev.is/", name: "lax1dude relay #1", primary: relayId == 0 },
-	{ addr: "wss://relay.lax1dude.net/", name: "lax1dude relay #2", primary: relayId == 1 },
-	{ addr: "wss://relay.shhnowisnottheti.me/", name: "ayunami relay #1", primary: relayId == 2 }
-],
-mainMenu: { splashes: [
-"Check https://mc.p.wip.la/ for critical updates!"
-], eaglerLogo: false }};
-(function(){
-var q = window.location.search;
-if(typeof q === 'string' && q.startsWith("?")) {
-	q = new URLSearchParams(q);
-	var s = q.get("server");
-	if(s) window.eaglercraftOpts.joinServer = s;
-}
-})();
-main();
-});}
-</script>
-</head>
-<body style="margin:0px;width:100vw;height:100vh;" id="game_frame">
-</body>
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Source Sans Pro;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="shortcut icon"
+      href="public/astley1.png"
+      type="icon/png"
+      sizes="32x32"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+      ScrollReveal({ reset: true });
+    </script>
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./index.css" rel="stylesheet" />
+
+      <div class="home-container">
+        <section class="home-hero">
+          <div class="home-background">
+            <img
+              alt="image"
+              src="public/circle-background.svg"
+              class="home-image"
+            />
+            <img
+              alt="image"
+              src="public/line-background.svg"
+              class="home-image1"
+            />
+          </div>
+          <header data-thq="thq-navbar" class="home-navbar">
+            <h2 class="home-text">PyMC</h2>
+            <div
+              data-thq="thq-navbar-nav"
+              data-role="Nav"
+              class="home-desktop-menu"
+            >
+              <nav
+                data-thq="thq-navbar-nav-links"
+                data-role="Nav"
+                class="home-nav"
+              >
+                <a href="#about"><span class="navLink">About</span></a>
+                <a href="#connect"><span class="navLink">How to Connect</span></a>
+                <a href="https://forms.gle/C1c42Lzg9bNb4Gcn8"><span class="navLink">Mod Application</span></a>
+              </nav>
+              <button class="button">
+                <span>
+                  <span>Join now</span>
+                  <br />
+                </span>
+                <svg viewBox="0 0 1024 1024" class="home-icon">
+                  <path
+                    d="M512 170l342 342-342 342-60-60 238-240h-520v-84h520l-238-240z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <div data-thq="thq-burger-menu" class="home-burger-menu">
+              <svg viewBox="0 0 1024 1024" class="home-icon02">
+                <path
+                  d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                ></path>
+              </svg>
+            </div>
+            <div data-thq="thq-mobile-menu" class="home-mobile-menu">
+              <div
+                data-thq="thq-mobile-menu-nav"
+                data-role="Nav"
+                class="home-nav1"
+              >
+                <div class="home-container1">
+                  <h2 class="home-text04">PyMC</h2>
+                  <div data-thq="thq-close-menu" class="home-menu-close">
+                    <svg viewBox="0 0 1024 1024" class="home-icon04">
+                      <path
+                        d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <nav
+                  data-thq="thq-mobile-menu-nav-links"
+                  data-role="Nav"
+                  class="home-nav2"
+                >
+                  <a href="#about"><span class="navLink home-text05">About</span></a>
+                  <a href="#connect"><span class="navLink home-text06">How to Connect</span></a>
+                  <a href="https://forms.gle/C1c42Lzg9bNb4Gcn8"><span class="navLink home-text07">Mod Application</span></a>
+                </nav>
+                <div class="home-button-container">
+                  <a href="/client"><button class="home-login button">Launch Client</button></a>
+                  <a href="https://padlet.com/python660/pymc"><button class="button home-register1">Request Server URL</button></a>
+                </div>
+              </div>
+              <img
+                alt="image"
+                src="public/quote-background.svg"
+                class="home-background1"
+              />
+            </div>
+          </header>
+          <div class="home-hero-content">
+            <h1 class="home-text10">World Class User-Oriented Community</h1>
+            <div class="home-caption">
+              <button class="home-register2 button-style-1 button">
+                <a href="/client"><span class="home-text11">Launch Client</span></a>
+              </button>
+              <p class="home-caption1">
+                <span class="home-text12">Invite-only</span>
+                <span>as of</span>
+                <span>December 28, 2023</span>
+                <span> - </span>
+                <a href="https://padlet.com/python660/pymc" target="_blank"><span class="home-text12 home-text14">Request Server URL</span></a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="home-notes">
+          <div class="home-first" id="about">
+            <div data-aos="fade-up-right" class="home-content">
+              <h2 class="home-header">
+                <span>Imagine a place...</span>
+                <br />
+              </h2>
+              <div class="home-list">
+                <div class="home-note"><div class="home-point"></div></div>
+                <div class="home-note1">
+                  <p class="home-text17">
+                    where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <img
+              alt="image"
+              src="https://images.unsplash.com/photo-1537963447914-dbc04b81de27?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDE0fHxnYW1lfGVufDB8fHx8MTcwNDY4MzcyMnww&amp;ixlib=rb-4.0.3&amp;w=1400"
+              class="home-image2 image-notes"
+            />
+          </div>
+          <div class="home-second" id="connect">
+            <div data-aos="fade-up-left" class="home-content1">
+              <h2 class="home-header1">
+                <span class="home-text18">Connect from wherever, whenever you feel like it</span>
+                <br />
+              </h2>
+              <span>Text</span>
+              <button class="button button-style-2 home-register3">
+                <a<span>Connect now</span>
+                <svg viewBox="0 0 1024 1024" class="home-icon12">
+                  <path
+                    d="M512 170l342 342-342 342-60-60 238-240h-520v-84h520l-238-240z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <img
+              alt="image"
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDE4fHxpbnRlcm5ldHxlbnwwfHx8fDE3MDQ2ODM3NDN8MA&amp;ixlib=rb-4.0.3&amp;w=1400"
+              class="image-notes"
+            />
+          </div>
+        </section>
+        <section class="home-black">
+          <img alt="image" src="public/black-vector.svg" class="home-image4" />
+          <section class="home-more">
+            <div class="home-accordions">
+              <div class="home-accordion">
+                <br/>
+                <div class="home-header2"><h3 class="home-title">FAQ</h3></div>
+                <div class="home-items">
+                  <div
+                    data-role="accordion-container"
+                    class="home-element accordion"
+                  >
+                    <div class="home-content2">
+                      <span class="home-header3">
+                        Help, the server isn't connecting!
+                      </span>
+                      <span
+                        data-role="accordion-content"
+                        class="home-description"
+                      >
+                        1. Re-check the Padlet for server URL updates; we rotate them on a regular basis as a security measure to prevent abuse.
+                        <br/>
+                        2. Ensure that the server URL starts with "wss://" rather than "https://", and that it ends with "/server"
+                        <br/>
+                        3. Talk to whoever gave you the password to the server URL access page.
+                      </span>
+                    </div>
+                    <div class="home-icon-container">
+                      <svg
+                        viewBox="0 0 1024 1024"
+                        data-role="accordion-icon-closed"
+                        class="home-icon14"
+                      >
+                        <path
+                          d="M213.333 554.667h256v256c0 23.552 19.115 42.667 42.667 42.667s42.667-19.115 42.667-42.667v-256h256c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-256v-256c0-23.552-19.115-42.667-42.667-42.667s-42.667 19.115-42.667 42.667v256h-256c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                        ></path></svg
+                      ><svg
+                        viewBox="0 0 1024 1024"
+                        data-role="accordion-icon-open"
+                        class="home-icon16"
+                      >
+                        <path
+                          d="M213.333 554.667h597.333c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-597.333c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div
+                    data-role="accordion-container"
+                    class="home-element1 accordion"
+                  >
+                    <div class="home-content3">
+                      <span class="home-header4">
+                        Can you upgrade the server?
+                      </span>
+                      <span
+                        data-role="accordion-content"
+                        class="home-description1"
+                      >
+                        Unfortunately, previously attempted version upgrades have resulted in frequent server crashes. Although a version upgrade is highly unlikely, we are still working towards upgrading to v1.8.
+                      </span>
+                    </div>
+                    <div class="home-icon-container1">
+                      <svg
+                        viewBox="0 0 1024 1024"
+                        data-role="accordion-icon-closed"
+                        class="home-icon18"
+                      >
+                        <path
+                          d="M213.333 554.667h256v256c0 23.552 19.115 42.667 42.667 42.667s42.667-19.115 42.667-42.667v-256h256c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-256v-256c0-23.552-19.115-42.667-42.667-42.667s-42.667 19.115-42.667 42.667v256h-256c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                        ></path></svg
+                      ><svg
+                        viewBox="0 0 1024 1024"
+                        data-role="accordion-icon-open"
+                        class="home-icon20"
+                      >
+                        <path
+                          d="M213.333 554.667h597.333c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-597.333c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div
+                    data-role="accordion-container"
+                    class="home-element2 accordion"
+                  >
+                    <div class="home-content4">
+                      <span class="home-header5">
+                        Can I connect to a vanilla 1.5 server?
+                      </span>
+                      <span
+                        data-role="accordion-content"
+                        class="home-description2"
+                      >
+                        No, the client only supports websockets and offline-mode-enabled servers. Instead, use a normal client.
+                      </span>
+                    </div>
+                    <div class="home-icon-container2">
+                      <svg
+                        viewBox="0 0 1024 1024"
+                        data-role="accordion-icon-closed"
+                        class="home-icon22"
+                      >
+                        <path
+                          d="M213.333 554.667h256v256c0 23.552 19.115 42.667 42.667 42.667s42.667-19.115 42.667-42.667v-256h256c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-256v-256c0-23.552-19.115-42.667-42.667-42.667s-42.667 19.115-42.667 42.667v256h-256c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                        ></path></svg
+                      ><svg
+                        viewBox="0 0 1024 1024"
+                        data-role="accordion-icon-open"
+                        class="home-icon24"
+                      >
+                        <path
+                          d="M213.333 554.667h597.333c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-597.333c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="home-container3">
+                  <script>
+                     const accordionContainers = document.querySelectorAll("[data-role='accordion-container']"); // All accordion containers
+                     const accordionContents = document.querySelectorAll("[data-role='accordion-content']"); // All accordion content
+                     const accordionIconsClosed = document.querySelectorAll("[data-role='accordion-icon-closed']"); // All accordion closed icons
+                     const accordionIconsOpen = document.querySelectorAll("[data-role='accordion-icon-open']"); // All accordion open icons
+
+                     accordionContents.forEach((accordionContent) => {
+                         accordionContent.style.display = 'none'; //Hides all accordion contents
+                     });
+
+                     accordionIconsClosed.forEach((icon) => {
+                       icon.style.display = 'flex'
+                     })
+
+                     accordionIconsOpen.forEach((icon) => {
+                       icon.style.display = 'none'
+                     })
+
+                     accordionContainers.forEach((accordionContainer, index) => {
+                         accordionContainer.addEventListener('click', () => {
+                             if (accordionContents[index].style.display === 'flex') {
+                                 // If the accordion is already open, close it
+                                 accordionContents[index].style.display = 'none';
+                                 accordionIconsClosed[index].style.display = 'flex';
+                                 accordionIconsOpen[index].style.display = 'none'
+                             } else {
+                                 // If the accordion is closed, open it
+                                 accordionContents.forEach((accordionContent) => {
+                                     accordionContent.style.display = 'none'; //Hides all accordion contents
+                                 });
+
+                                 accordionIconsClosed.forEach((accordionIcon) => {
+                                     accordionIcon.style.display = 'flex'; // Resets all icon transforms to 0deg (default)
+                                 });
+
+                                 accordionIconsOpen.forEach((accordionIcon) => {
+                                   accordionIcon.style.display = 'none';
+                                 })
+
+                                 accordionContents[index].style.display = 'flex'; // Shows accordion content
+                                 accordionIconsClosed[index].style.display = 'none'; // Rotates accordion icon 180deg
+                                 accordionIconsOpen[index].style.display = 'flex';
+                             }
+                         });
+                     });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <footer class="home-footer">
+          <div class="home-content5">
+            <div class="home-details">
+              <h2 class="home-title1">PyMC</h2>
+              <p class="home-description3">
+                PyMC brings friends together to connect, learn from each other,
+                and find memorable moments. We started as a small server and
+                have grown to be the world's largest server.
+              </p>
+            </div>
+            <span class="home-copyright">
+              Privacy — Terms &amp; Conditions © 2024 PyMC All Rights Reserved
+            </span>
+          </div>
+        </footer>
+        <div>
+          <div class="home-container5">
+            <script>
+              ScrollReveal().reveal('.speaker');
+              ScrollReveal().reveal('.image-notes');
+            </script>
+          </div>
+        </div>
+        <div>
+          <div class="home-container7">
+            <style>
+              #scrollbar::-webkit-scrollbar-track
+              {
+              	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+              	border-radius: 10px;
+              	background-color: #F5F5F5;
+              }
+
+              #scrollbar::-webkit-scrollbar
+              {
+              	height: 12px;
+              	background-color: #F5F5F5;
+              	border-radius: 10px;
+              }
+
+              #scrollbar::-webkit-scrollbar-thumb
+              {
+              	border-radius: 10px;
+              	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+              	background-color: #555;
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      data-section-id="navbar"
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
+    ></script>
+  </body>
 </html>
